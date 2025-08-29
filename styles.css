@@ -1,0 +1,201 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  
+  body {
+    background: #f7f9fc;
+    color: #222;
+    line-height: 1.5;
+  }
+  
+  header {
+    background: #004aad;
+    color: #fff;
+    padding: 20px 0;
+  }
+  
+  header .wrap {
+    width: min(1200px, 95%);
+    margin: auto;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+  }
+  
+  header .sub {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  
+  main.wrap {
+    width: min(1200px, 95%);
+    margin: 20px auto;
+    display: grid;
+    gap: 20px;
+  }
+  
+  .grid.cols-2 {
+    grid-template-columns: 2fr 1fr;
+  }
+  
+  /* Card */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  
+  .card .content {
+    padding: 20px;
+  }
+  
+  /* Tabelas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+  }
+  
+  table thead {
+    background: #eef2f8;
+  }
+  
+  table th, table td {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+  
+  table td input, 
+  table td select {
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  table td button {
+    display: block;
+    margin: auto;
+  }
+  
+  /* Inputs */
+  input[type="text"], input.money {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+  
+  /* Botões */
+  button {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  
+  button.primary {
+    background: #004aad;
+    color: #fff;
+  }
+  
+  button.primary:hover {
+    background: #003580;
+  }
+  
+  button.danger {
+    background: #dc3545;
+    color: #fff;
+  }
+  
+  button.danger:hover {
+    background: #b02a37;
+  }
+  
+  button.mini {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+  
+  /* KPIs */
+  .totals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+  }
+  
+  .kpi {
+    background: #f1f4f9;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .kpi .label {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  .kpi .val {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 4px;
+  }
+  
+  /* Badge e pill */
+  .badge {
+    background: #0066cc;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+  
+  .pill {
+    display: flex;
+    align-items: center;
+    background: #eef2f8;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 960px) {
+    .grid.cols-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 1.4rem;
+    }
+  
+    table th, table td {
+      font-size: 0.8rem;
+      padding: 6px;
+    }
+  
+    button {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+  
+    .kpi .val {
+      font-size: 1rem;
+    }
+  }
+  

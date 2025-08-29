@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fluxo de Caixa da Empresa</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Fluxo de Caixa da Empresa</h1>
+      <div class="sub">Edite valores, adicione linhas e exporte para Excel (arquivo .xls compatível).</div>
+    </div>
+  </header>
+
+  <main class="wrap grid cols-2">
+    <section class="card" id="lancamentos">
+      <div class="content">
+        <div class="row" style="justify-content:space-between">
+          <h2>Lançamentos</h2>
+          <span class="badge">Moeda: BRL</span>
+        </div>
+        <div class="row">
+          <label class="pill">Saldo Inicial
+            <input id="saldoInicial" type="text" inputmode="decimal" value="270,00" style="width:140px;margin-left:10px" />
+          </label>
+          <div class="btns" style="margin-left:auto">
+            <button class="primary" id="exportar">Exportar para Excel</button>
+            <button id="resetar" title="Voltar aos valores de exemplo">Resetar Exemplo</button>
+          </div>
+        </div>
+        <div class="sep"></div>
+
+        <h3>Entradas</h3>
+        <table id="tEntradas">
+          <thead>
+            <tr><th>Descrição</th><th>Categoria (p/ decomposição)</th><th style="width:160px">Valor</th><th style="width:44px"></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input value="Recebido de Clientes"/></td>
+              <td>
+                <select>
+                  <option value="operacional" selected>Operacional</option>
+                  <option value="investimento">Investimento</option>
+                  <option value="financiamento">Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="1.500,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input value="Empréstimo de Curto Prazo"/></td>
+              <td>
+                <select>
+                  <option value="operacional">Operacional</option>
+                  <option value="investimento">Investimento</option>
+                  <option value="financiamento" selected>Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="450,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="btns" style="margin:10px 0 18px">
+          <button onclick="adicionarLinha('tEntradas')">+ Adicionar Entrada</button>
+        </div>
+
+        <h3>Saídas</h3>
+        <table id="tSaidas">
+          <thead>
+            <tr><th>Descrição</th><th>Categoria (p/ decomposição)</th><th style="width:160px">Valor</th><th style="width:44px"></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input value="Saídas Administrativas"/></td>
+              <td>
+                <select>
+                  <option value="operacional" selected>Operacional</option>
+                  <option value="investimento">Investimento</option>
+                  <option value="financiamento">Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="70,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input value="Saídas Comerciais"/></td>
+              <td>
+                <select>
+                  <option value="operacional" selected>Operacional</option>
+                  <option value="investimento">Investimento</option>
+                  <option value="financiamento">Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="350,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input value="Folha de Pagamento"/></td>
+              <td>
+                <select>
+                  <option value="operacional" selected>Operacional</option>
+                  <option value="investimento">Investimento</option>
+                  <option value="financiamento">Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="175,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input value="Serviços de Terceiros"/></td>
+              <td>
+                <select>
+                  <option value="operacional" selected>Operacional</option>
+                  <option value="investimento">Investimento</option>
+                  <option value="financiamento">Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="50,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input value="Impostos e Taxas"/></td>
+              <td>
+                <select>
+                  <option value="operacional" selected>Operacional</option>
+                  <option value="investimento">Investimento</option>
+                  <option value="financiamento">Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="125,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input value="Compras de Imobilizado"/></td>
+              <td>
+                <select>
+                  <option value="operacional">Operacional</option>
+                  <option value="investimento" selected>Investimento</option>
+                  <option value="financiamento">Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="250,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input value="Amortização do Principal"/></td>
+              <td>
+                <select>
+                  <option value="operacional">Operacional</option>
+                  <option value="investimento">Investimento</option>
+                  <option value="financiamento" selected>Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="850,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+            <tr>
+              <td><input value="Pagamento de Juros"/></td>
+              <td>
+                <select>
+                  <option value="operacional">Operacional</option>
+                  <option value="investimento">Investimento</option>
+                  <option value="financiamento" selected>Financiamento</option>
+                </select>
+              </td>
+              <td><input class="money" value="250,00"/></td>
+              <td><button class="danger mini" onclick="removerLinha(this)">×</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="btns" style="margin:10px 0 8px">
+          <button onclick="adicionarLinha('tSaidas')">+ Adicionar Saída</button>
+        </div>
+
+        <div class="totals" id="totais">
+          <div class="kpi"><div class="label">Entradas</div><div class="val" id="kEntradas">—</div></div>
+          <div class="kpi"><div class="label">Saídas</div><div class="val" id="kSaidas">—</div></div>
+          <div class="kpi"><div class="label">Saldo Final</div><div class="val" id="kSaldoFinal">—</div></div>
+          <div class="kpi"><div class="label">Lançamentos</div><div class="val" id="kLancs">—</div></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="card">
+      <div class="content">
+        <h2>Decomposição</h2>
+        <p>Classifique os lançamentos para decompor o fluxo por categoria.</p>
+
+        <table>
+          <thead>
+            <tr><th></th><th>Entradas</th><th>Saídas</th><th>Fluxo</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Operacional</th>
+              <td><div id="decEntradaOp"></div></td>
+              <td><div id="decSaidaOp"></div></td>
+              <td><div id="decFluxoOp"></div></td>
+            </tr>
+            <tr>
+              <th>Investimento</th>
+              <td><div id="decEntradaInv"></div></td>
+              <td><div id="decSaidaInv"></div></td>
+              <td><div id="decFluxoInv"></div></td>
+            </tr>
+            <tr>
+              <th>Financiamento</th>
+              <td><div id="decEntradaFin"></div></td>
+              <td><div id="decSaidaFin"></div></td>
+              <td><div id="decFluxoFin"></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
